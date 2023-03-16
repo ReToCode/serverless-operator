@@ -129,6 +129,12 @@ function build_image {
     find "${build_dir}" -type f -exec sha1sum {} + \
       > "${rootdir}/_output/${name}.sha1sum"
     oc -n "${OLM_NAMESPACE}" delete configmap "${name}-sha1sums" --ignore-not-found=true
+
+    echo "####"
+    cat "${rootdir}/_output/${name}.sha1sum"
+    du -h "${rootdir}/_output/${name}.sha1sum"
+    echo "####"
+
     oc -n "${OLM_NAMESPACE}" create configmap "${name}-sha1sums" \
       --from-file="${rootdir}/_output/${name}.sha1sum"
     rm -f "${rootdir}/_output/${name}.sha1sum"
