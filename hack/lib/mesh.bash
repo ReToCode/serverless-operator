@@ -120,19 +120,20 @@ function deploy_gateways {
   oc apply -f "${resources_dir}"/peerauthentication.yaml || return $?
   oc apply -f "${resources_dir}"/authorization-policies/setup || return $?
   oc apply -f "${resources_dir}"/authorization-policies || return $?
+  oc apply -f "${resources_dir}"/destinationrules.yaml || return $?
 
-  cat <<-EOF | oc apply -f -
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-traffic-to-cluster-domain
-  namespace: istio-system
-spec:
-  action: ALLOW
-  rules:
-    - to:
-        - operation:
-            hosts: [ "*.${subdomain}" ]
+#  cat <<-EOF | oc apply -f -
+#apiVersion: security.istio.io/v1beta1
+#kind: AuthorizationPolicy
+#metadata:
+#  name: allow-traffic-to-cluster-domain
+#  namespace: istio-system
+#spec:
+#  action: ALLOW
+#  rules:
+#    - to:
+#        - operation:
+#            hosts: [ "*.${subdomain}" ]
 EOF
 
   oc apply -n "${EVENTING_NAMESPACE}" -f "${resources_dir}"/kafka-service-entry.yaml || return $?

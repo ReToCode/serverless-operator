@@ -39,7 +39,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: force-mtls
-  namespace: serving-tests
+  namespace: serving-tests-alt
 spec:
   host: "*.serving-tests-alt.svc.cluster.local"
   trafficPolicy:
@@ -50,7 +50,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: force-mtls
-  namespace: serving-tests
+  namespace: serverless-tests
 spec:
   host: "*.serverless-tests.svc.cluster.local"
   trafficPolicy:
