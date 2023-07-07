@@ -134,7 +134,7 @@ function deploy_gateways {
 #    - to:
 #        - operation:
 #            hosts: [ "*.${subdomain}" ]
-EOF
+#EOF
 
   oc apply -n "${EVENTING_NAMESPACE}" -f "${resources_dir}"/kafka-service-entry.yaml || return $?
   for ns in serverless-tests eventing-e2e0 eventing-e2e1 eventing-e2e2 eventing-e2e3 eventing-e2e4; do
