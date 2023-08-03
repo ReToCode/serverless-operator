@@ -33,12 +33,8 @@ import (
 )
 
 const (
-	ConfigTracingEnv   = "K_CONFIG_TRACING"
-	ConfigLoggingEnv   = "K_CONFIG_LOGGING"
-	EventGeneratorsEnv = "EVENT_GENERATORS"
-	EventLogsEnv       = "EVENT_LOGS"
-
-	EnforceTLS = "ENFORCE_TLS"
+	ConfigTracingEnv = "K_CONFIG_TRACING"
+	ConfigLoggingEnv = "K_CONFIG_LOGGING"
 )
 
 func ParseHeaders(serializedHeaders string) http.Header {
@@ -113,13 +109,9 @@ func WithServerTracing(handler http.Handler) http.Handler {
 
 // WithClientTracing enables exporting traces by the client's transport.
 func WithClientTracing(client *http.Client) error {
-	prev := client.Transport
 	client.Transport = &ochttp.Transport{
-		Base:        prev,
+		Base:        http.DefaultTransport,
 		Propagation: tracecontextb3.TraceContextEgress,
 	}
 	return nil
 }
-
-type HandlerFunc func(handler http.Handler) http.Handler
-type ClientOption func(*http.Client) error

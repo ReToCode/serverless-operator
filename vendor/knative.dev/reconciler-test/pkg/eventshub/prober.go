@@ -325,8 +325,8 @@ func (p *EventProber) SenderEventsFromSVC(svcName, path string) feature.StepFn {
 		if err != nil {
 			t.Error(err)
 		}
-		u.URL.Path = path
-		p.appendSenderOptions(InputYAML(u.URL.String()))
+		u.Path = path
+		p.appendSenderOptions(InputYAML(u.String()))
 	}
 }
 

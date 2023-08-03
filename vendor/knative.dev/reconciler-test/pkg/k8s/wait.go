@@ -83,14 +83,14 @@ func WaitForReadyOrDone(ctx context.Context, t feature.T, ref corev1.ObjectRefer
 	case "jobs":
 		err := WaitUntilJobDone(ctx, t, ref.Name, interval, timeout)
 		if err != nil {
-			return fmt.Errorf("failed waiting for job done %+v %+v: %w", gvr, ref, err)
+			return err
 		}
 		return nil
 
 	default:
 		err := WaitForResourceReady(ctx, t, ref.Namespace, ref.Name, gvr, interval, timeout)
 		if err != nil {
-			return fmt.Errorf("failed waiting for resource %+v %+v: %w", gvr, ref, err)
+			return err
 		}
 	}
 
@@ -459,10 +459,10 @@ func PodLogs(ctx context.Context, podName, containerName, namespace string) ([]b
 
 // WaitForAddress waits until a resource has an address.
 // Timing is optional but if provided is [interval, timeout].
-func WaitForAddress(ctx context.Context, gvr schema.GroupVersionResource, name string, timing ...time.Duration) (*duckv1.Addressable, error) {
+func WaitForAddress(ctx context.Context, gvr schema.GroupVersionResource, name string, timing ...time.Duration) (*apis.URL, error) {
 	interval, timeout := PollTimings(ctx, timing)
 
-	var addr *duckv1.Addressable
+	var addr *apis.URL
 	err := wait.PollImmediate(interval, timeout, func() (bool, error) {
 		var err error
 		addr, err = Address(ctx, gvr, name)

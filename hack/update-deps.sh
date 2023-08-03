@@ -35,6 +35,7 @@ REPLACE_DEPS=(
   "knative.dev/pkg=knative.dev/pkg@${KN_VERSION}"
   "knative.dev/hack=knative.dev/hack@${KN_VERSION}"
   "knative.dev/networking=knative.dev/networking@${KN_VERSION}"
+  "knative.dev/reconciler-test=knative.dev/reconciler-test@${KN_VERSION}"
   "github.com/openshift/api=github.com/openshift/api@release-${OCP_VERSION}"
   "github.com/openshift/client-go=github.com/openshift/client-go@release-${OCP_VERSION}"
   "github.com/openshift/machine-config-operator=github.com/openshift/machine-config-operator@release-${OCP_VERSION}"

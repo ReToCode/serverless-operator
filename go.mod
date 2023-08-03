@@ -32,6 +32,7 @@ require (
 	knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
 	knative.dev/operator v0.37.3
 	knative.dev/pkg v0.0.0-20230718152110-aef227e72ead
+	knative.dev/reconciler-test v0.0.0-20230803013451-a8041ba726ed
 	knative.dev/serving v0.37.0
 	sigs.k8s.io/controller-runtime v0.15.0
 	sigs.k8s.io/yaml v1.3.0
@@ -176,7 +177,6 @@ require (
 	github.com/rogpeppe/go-internal v1.8.1 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	k8s.io/apiextensions-apiserver v0.27.2
-	knative.dev/reconciler-test v0.0.0-20230803013451-a8041ba726ed
 )
 
 replace (
@@ -185,6 +185,7 @@ replace (
 	knative.dev/eventing-kafka-broker => github.com/openshift-knative/eventing-kafka-broker v0.25.1-0.20230728104659-fdd0a0de9c7e
 	knative.dev/hack => knative.dev/hack v0.0.0-20230417170854-f591fea109b3
 	knative.dev/networking => knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
+	knative.dev/reconciler-test => knative.dev/reconciler-test v0.0.0-20230803085521-7f95e17612f8
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
 	knative.dev/serving => github.com/openshift-knative/serving v0.10.1-0.20230721070749-1af735104330
 )

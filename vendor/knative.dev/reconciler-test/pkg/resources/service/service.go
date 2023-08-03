@@ -23,6 +23,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/intstr"
+	"knative.dev/pkg/apis"
 	duckv1 "knative.dev/pkg/apis/duck/v1"
 	"knative.dev/pkg/tracker"
 
@@ -86,6 +87,7 @@ func AsDestinationRef(name string) *duckv1.Destination {
 	}
 }
 
-func Address(ctx context.Context, name string) (*duckv1.Addressable, error) {
+// Address
+func Address(ctx context.Context, name string) (*apis.URL, error) {
 	return k8s.Address(ctx, GVR(), name)
 }

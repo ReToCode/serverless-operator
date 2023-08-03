@@ -15,7 +15,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .serviceName }}
+  name: {{ .name }}
   namespace: {{ .namespace }}
 spec:
   selector:
@@ -25,9 +25,3 @@ spec:
       name: http
       port: 80
       targetPort: 8080
-    {{ if .withEnforceTLS }}
-    - protocol: TCP
-      name: https
-      port: 443
-      targetPort: 8443
-    {{ end }}

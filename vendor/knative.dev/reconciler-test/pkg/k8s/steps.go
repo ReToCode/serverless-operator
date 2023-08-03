@@ -93,14 +93,13 @@ func IsAddressable(gvr schema.GroupVersionResource, name string, timing ...time.
 
 // Address attempts to resolve an Addressable address into a URL. If the
 // resource is found but not Addressable, Address will return (nil, nil).
-func Address(ctx context.Context, gvr schema.GroupVersionResource, name string) (*duckv1.Addressable, error) {
+func Address(ctx context.Context, gvr schema.GroupVersionResource, name string) (*apis.URL, error) {
 	env := environment.FromContext(ctx)
 
 	// Special case Service.
 	if gvr.Group == "" && gvr.Version == "v1" && gvr.Resource == "services" {
 		u := "http://" + network.GetServiceHostname(name, env.Namespace())
-		url, err := apis.ParseURL(u)
-		return &duckv1.Addressable{URL: url}, err
+		return apis.ParseURL(u)
 	}
 
 	like := &duckv1.AddressableType{}
@@ -121,5 +120,5 @@ func Address(ctx context.Context, gvr schema.GroupVersionResource, name string) 
 	}
 
 	// Success!
-	return obj.Status.Address, nil
+	return obj.Status.Address.URL, nil
 }

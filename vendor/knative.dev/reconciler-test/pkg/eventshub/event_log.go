@@ -45,9 +45,8 @@ func (e *EventLogs) Vent(observed EventInfo) error {
 }
 
 const (
-	ReceiverEventGenerator  string = "receiver"
-	SenderEventGenerator    string = "sender"
-	ForwarderEventGenerator string = "forwarder"
+	ReceiverEventGenerator string = "receiver"
+	SenderEventGenerator   string = "sender"
 
 	RecorderEventLog string = "recorder"
 	LoggerEventLog   string = "logger"
