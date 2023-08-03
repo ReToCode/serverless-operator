@@ -185,8 +185,8 @@ replace (
 	knative.dev/eventing-kafka-broker => github.com/openshift-knative/eventing-kafka-broker v0.25.1-0.20230728104659-fdd0a0de9c7e
 	knative.dev/hack => knative.dev/hack v0.0.0-20230417170854-f591fea109b3
 	knative.dev/networking => knative.dev/networking v0.0.0-20230419144338-e5d04e805e50
-	knative.dev/reconciler-test => knative.dev/reconciler-test v0.0.0-20230803085521-7f95e17612f8
 	knative.dev/pkg => knative.dev/pkg v0.0.0-20230418073056-dfad48eaa5d0
+	knative.dev/reconciler-test => knative.dev/reconciler-test v0.0.0-20230803113521-70df278b667d
 	knative.dev/serving => github.com/openshift-knative/serving v0.10.1-0.20230721070749-1af735104330
 )
 
