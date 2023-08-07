@@ -21,7 +21,7 @@ import (
 	"knative.dev/reconciler-test/pkg/environment"
 	"knative.dev/reconciler-test/pkg/feature"
 	"knative.dev/reconciler-test/pkg/k8s"
-	"knative.dev/reconciler-test/pkg/resources/service"
+	"knative.dev/reconciler-test/pkg/resources/knativeservice"
 )
 
 // LogFilter defines which logs should be checked.
@@ -98,7 +98,7 @@ func getKsvcNameAndURL(ctx context.Context, refs []corev1.ObjectReference) (stri
 		numKsvc  int
 	)
 	for _, ref := range refs {
-		if ref.GroupVersionKind().GroupVersion() == service.GVR().GroupVersion() {
+		if ref.GroupVersionKind().GroupVersion() == knativeservice.GVR().GroupVersion() {
 			// Make sure we verify traffic for the right Knative Service.
 			// This is for safety and to guarantee the feature invariance.
 			if numKsvc != 0 {
@@ -110,7 +110,7 @@ func getKsvcNameAndURL(ctx context.Context, refs []corev1.ObjectReference) (stri
 	}
 
 	namespace := environment.FromContext(ctx).Namespace()
-	ksvc, err := dynamicclient.Get(ctx).Resource(service.GVR()).Namespace(namespace).
+	ksvc, err := dynamicclient.Get(ctx).Resource(knativeservice.GVR()).Namespace(namespace).
 		Get(ctx, ksvcName, metav1.GetOptions{})
 	if err != nil {
 		return "", nil, fmt.Errorf("unable to get ksvc %s: %w", ksvcName, err)
