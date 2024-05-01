@@ -26,9 +26,11 @@ install-tracing:
 	./hack/tracing.sh
 
 install-serving:
+	UNINSTALL_CERTMANAGER="false" ./hack/certmanager.sh
 	INSTALL_EVENTING="false" ./hack/install.sh
 
 install-serving-with-mesh:
+	UNINSTALL_CERTMANAGER="false" ./hack/certmanager.sh
 	FULL_MESH="true" UNINSTALL_MESH="false" ./hack/mesh.sh
 	FULL_MESH=true SCALE_UP=4 INSTALL_SERVING=true INSTALL_EVENTING="false" ./hack/install.sh
 
