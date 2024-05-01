@@ -39,6 +39,12 @@ function deploy_certmanager_operator {
   oc wait deployments -n ${deployment_namespace} cert-manager-webhook --for condition=available --timeout=600s
   oc wait deployments -n ${deployment_namespace} cert-manager --for condition=available --timeout=600s
 
+  # serving resources
+  oc apply -f "${certmanager_resources_dir}"/serving-selfsigned-issuer.yaml || return $?
+  oc apply -f "${certmanager_resources_dir}"/serving-ca-issuer.yaml || return $?
+  oc apply -n "${deployment_namespace}" -f "${certmanager_resources_dir}"/serving-ca-certificate.yaml || return $?
+
+  # eventing resources
   oc apply -f "${certmanager_resources_dir}"/selfsigned-issuer.yaml || return $?
   oc apply -f "${certmanager_resources_dir}"/eventing-ca-issuer.yaml || return $?
   oc apply -n "${deployment_namespace}" -f "${certmanager_resources_dir}"/ca-certificate.yaml || return $?

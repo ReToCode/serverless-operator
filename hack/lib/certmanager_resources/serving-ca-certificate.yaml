@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: knative-serving-selfsigned-ca
+  # namespace: cert-manager # or openshift-cert-manager for <= 4.11
+spec:
+  secretName: knative-serving-ca
+
+  isCA: true
+  commonName: selfsigned-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+
+  issuerRef:
+    name: knative-serving-selfsigned-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
