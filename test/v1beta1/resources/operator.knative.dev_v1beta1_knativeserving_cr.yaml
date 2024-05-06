@@ -11,10 +11,10 @@ spec:
     certmanager:
       clusterLocalIssuerRef: |
         kind: ClusterIssuer
-        name: knative-serving-selfsigned-issuer
+        name: knative-selfsigned-issuer
       systemInternalIssuerRef: |
         kind: ClusterIssuer
-        name: knative-serving-selfsigned-issuer
+        name: knative-selfsigned-issuer
     autoscaler:
       container-concurrency-target-default: "100"
       container-concurrency-target-percentage: "1.0"

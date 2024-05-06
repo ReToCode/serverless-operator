@@ -86,4 +86,6 @@ function sync_trust_bundle {
         --dry-run=client -o yaml | kubectl apply -n "${ns}" -f - || return $?
      oc label configmap -n "${ns}" knative-ca-bundle networking.knative.dev/trust-bundle=true --overwrite
    done
+
+   rm -f tls.crt ca.crt
 }
