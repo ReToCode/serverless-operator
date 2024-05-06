@@ -1,18 +1,15 @@
+# Aligned with upstream Serving configuration, used by --https e2e tests
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: knative-serving-selfsigned-ca
-  # namespace: cert-manager # or openshift-cert-manager for <= 4.11
+  name: knative-selfsigned-ca
+  namespace: cert-manager
 spec:
-  secretName: knative-serving-ca
-
+  secretName: knative-selfsigned-ca # Knative Serving e2e tests will look for this secret to be used in --https e2e tests
+  commonName: knative.dev
+  usages:
+    - server auth
   isCA: true
-  commonName: selfsigned-ca
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-
   issuerRef:
-    name: knative-serving-selfsigned-issuer
     kind: ClusterIssuer
-    group: cert-manager.io
+    name: selfsigned-cluster-issuer

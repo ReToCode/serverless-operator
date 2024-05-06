@@ -15,8 +15,8 @@ dump_state.setup # test
 if [[ $FULL_MESH == "true" ]]; then
   # net-istio does not use knative-serving-ingress namespace.
   export INGRESS_NAMESPACE="knative-serving"
-else
-  trust_router_ca
+#else
+  #trust_router_ca
 fi
 
 logger.success '🚀 Cluster prepared for testing.'
