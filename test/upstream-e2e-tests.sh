@@ -15,10 +15,7 @@ dump_state.setup
 logger.success '🚀 Cluster prepared for testing.'
 
 create_namespaces "${TEST_NAMESPACES[@]}"
-## Install ServiceMesh and enable mTLS.
-#if [[ $FULL_MESH != true ]]; then
-#  trust_router_ca
-#fi
+trust_router_ca
 
 run_testselect
 
